@@ -1,5 +1,4 @@
 FROM daocloud.io/centos:6.7
-MAINTAINER l_t_yuan l_t_yuan@163.com
 # use aliyun yum mirrors
 RUN mv /etc/yum.repos.d/CentOS-Base.repo /etc/yum.repos.d/CentOS-Base.repo.backup
 RUN curl -o CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-6.repo
@@ -41,7 +40,7 @@ RUN /usr/bin/composer config -g repo.packagist composer https://packagist.phpcom
 #RUN yum install -y supervisor
 #ADD supervisord.conf /etc/supervisord.conf
 #install apache
-RUN yum install -y httpd-devel
+RUN yum install -y httpd-devel && yum clean all #last clean
 #ADD httpd.conf /etc/httpd/conf.d/
 # set Asia/Shanghai as localtime
 RUN rm -rf /etc/localtime && cp -f /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
